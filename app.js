@@ -69,7 +69,7 @@ app.put('/api/update/:id', (req, res) => {
 // GET API to query requests
 app.get('/api/requests', (req, res) => {
     // Read query parameters
-    const { id, IsDone } = req.query;
+    const { id, isDone } = req.query;
   
     // Read the JSON file and parse it
     const data = JSON.parse(fs.readFileSync('requests.json', 'utf8'));
@@ -83,10 +83,10 @@ app.get('/api/requests', (req, res) => {
     }
   
     // Filter by 'IsDone' if present
-    if (IsDone !== undefined) {
+    if (isDone !== undefined) {
       // Convert IsDone to boolean since it comes as a string from query parameters
-      const isDoneBool = IsDone.toLowerCase() === 'true';
-      filteredData = filteredData.filter(d => d.IsDone === isDoneBool);
+      const isDoneBool = isDone.toLowerCase() === 'true';
+      filteredData = filteredData.filter(d => d.isDone === isDoneBool);
     }
   
     // Return filtered data
