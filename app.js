@@ -66,12 +66,30 @@ app.put('/api/update/:id', (req, res) => {
 
 // GET API to query requests
 app.get('/api/requests', (req, res) => {
-  const { id } = req.query;
-  const data = JSON.parse(fs.readFileSync('requests.json', 'utf8'));
+    // Read query parameters
+    const { id, IsDone } = req.query;
   
-  const filteredData = id ? data.filter(d => d.id === id) : data;
-  res.status(200).json(filteredData);
-});
+    // Read the JSON file and parse it
+    const data = JSON.parse(fs.readFileSync('requests.json', 'utf8'));
+  
+    // Initial filtered data will be all records
+    let filteredData = data;
+  
+    // Filter by 'id' if present
+    if (id) {
+      filteredData = filteredData.filter(d => d.id === id);
+    }
+  
+    // Filter by 'IsDone' if present
+    if (IsDone !== undefined) {
+      // Convert IsDone to boolean since it comes as a string from query parameters
+      const isDoneBool = IsDone.toLowerCase() === 'true';
+      filteredData = filteredData.filter(d => d.IsDone === isDoneBool);
+    }
+  
+    // Return filtered data
+    res.status(200).json(filteredData);
+  });
 
 // DELETE API to remove all entries
 app.delete('/api/requests', (req, res) => {
