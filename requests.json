@@ -1,0 +1,16 @@
+[
+  {
+    "appToModify": "Bumble",
+    "newPackageName": "com.bumble3.app",
+    "host": "88.150.107.241",
+    "proxy": "2222",
+    "username": "test@gmail.com",
+    "password": "rotblau..",
+    "latitude": "243414",
+    "longitude": "121414",
+    "timestamp": "2023-10-27T16:18:15.150Z",
+    "id": "d6c2ebc2-0d5b-4beb-838f-a96bb64f8ca1",
+    "isDone": false,
+    "downloadUrl": ""
+  }
+]
