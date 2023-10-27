@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Serve HTML files
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get("/seeStatus", (req, res) => {
