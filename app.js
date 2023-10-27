@@ -25,6 +25,8 @@ app.post('/api/submit', (req, res) => {
     timestamp: new Date().toISOString(),
     id: uuidv4(),
     isDone: false,
+    status: "Waiting to start.",
+    errors:"",
     downloadUrl: "", // empty downloadUrl field
   };
 
