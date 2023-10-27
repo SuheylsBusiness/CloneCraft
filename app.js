@@ -4,7 +4,10 @@ const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer'); // Add multer for file handling
 
-const upload = multer({ dest: 'uploads/' }); // configure multer
+const upload = multer({
+    dest: 'uploads/',
+    limits: { fileSize: 100 * 1024 * 1024 }
+  });
 
 const app = express();
 app.use(express.json());
