@@ -48,10 +48,11 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
 
 // GET API to download file
 app.get('/api/download/:filename', (req, res) => {
-  const { filename } = req.params;
-  const filePath = path.join(__dirname, 'uploads', filename);
-  res.download(filePath);
-});
+    const { filename } = req.params;
+    const filePath = path.join(__dirname, 'uploads', filename);
+    res.download(filePath, `${filename}.apk`);
+  });
+  
 
 // PUT API to update by ID
 app.put('/api/update/:id', (req, res) => {
