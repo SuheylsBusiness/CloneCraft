@@ -23,14 +23,17 @@ app.get("/seeStatus", (req, res) => {
 // POST API to collect submissions
 app.post('/api/submit', (req, res) => {
   const data = req.body;
+  const ip = req.headers['x-forwarded-for'] || req.ip || req.socket.remoteAddress;
+
   const newData = {
     ...data,
     timestamp: new Date().toISOString(),
     id: uuidv4(),
     isDone: false,
     status: "Waiting to start.",
-    errors:"",
+    errors: "",
     downloadUrl: "", // empty downloadUrl field
+    ipAddress: ip, // Include IP address here
   };
 
   const existingData = JSON.parse(fs.readFileSync('requests.json', 'utf8'));
