@@ -23,7 +23,8 @@ app.get("/seeStatus", (req, res) => {
 // POST API to collect submissions
 app.post('/api/submit', (req, res) => {
   const data = req.body;
-  const ip = req.headers['x-forwarded-for'] || req.ip || req.socket.remoteAddress;
+  const ip = (req.headers['x-forwarded-for'] || '').split(',').pop().trim() || 
+           req.socket.remoteAddress;
 
   const newData = {
     ...data,
