@@ -17,7 +17,7 @@
     // Displaying the attributes
     const statusDiv = document.getElementById('status');
     Object.keys(data[0]).forEach(key => {
-      if (key === 'downloadUrl') {
+      if (key === 'downloadUrl' && data[0][key].length > 0) {
         statusDiv.innerHTML += `
           <div class="row mb-3">
             <label class="col-sm-4 col-form-label">${key}</label>
