@@ -3,7 +3,6 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const multer = require('multer'); // Add multer for file handling
-const requestIp = require('request-ip');
 
 const upload = multer({
     dest: 'uploads/',
@@ -24,7 +23,6 @@ app.get("/seeStatus", (req, res) => {
 // POST API to collect submissions
 app.post('/api/submit', (req, res) => {
   const data = req.body;
-  const ip = requestIp.getClientIp(req);
 
   const newData = {
     ...data,
@@ -34,7 +32,6 @@ app.post('/api/submit', (req, res) => {
     status: "Waiting to start.",
     errors: "",
     downloadUrl: "", // empty downloadUrl field
-    ipAddress: ip, // Include IP address here
   };
 
   const existingData = JSON.parse(fs.readFileSync('requests.json', 'utf8'));

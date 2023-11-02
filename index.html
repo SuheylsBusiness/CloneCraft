@@ -72,10 +72,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 <script>
+    async function getIPAddress() {
+      try {
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipResponse.json();
+        return ipData.ip;
+      } catch (error) {
+        console.error('Could not get IP address:', error);
+        return 'N/A'; // Return Not Available if there was an error
+      }
+    }
+  
     async function submitForm(event) {
       event.preventDefault();
+      const ipAddress = await getIPAddress(); // Get the user's IP address
       const formData = new FormData(document.getElementById('cloneForm'));
       const json = Object.fromEntries(formData);
+      
+      json.ipAddress = ipAddress; // Add the IP address to the JSON object
   
       const response = await fetch('/api/submit', {
         method: 'POST',
